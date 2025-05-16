@@ -1,10 +1,13 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "@repo/typescript-config/react-library",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
     "composite": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "declaration": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true
   },
   "include": ["src/**/*"],
   "references": [{ "path": "../shared" }, { "path": "../iconiq" }]

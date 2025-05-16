@@ -37,6 +37,7 @@
     "@iconiq/shared": "workspace:*"
   },
   "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",

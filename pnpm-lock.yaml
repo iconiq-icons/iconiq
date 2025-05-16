@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:packages-internal/typescript-config
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
         version: 16.0.1(rollup@4.40.2)
@@ -80,6 +83,9 @@ importers:
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
+      rimraf:
+        specifier: ^6.0.1
+        version: 6.0.1
       rollup:
         specifier: ^4.40.2
         version: 4.40.2
@@ -165,6 +171,9 @@ importers:
         specifier: workspace:*
         version: link:../shared
     devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages-internal/typescript-config
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
         version: 16.0.1(rollup@4.40.2)
@@ -199,6 +208,9 @@ importers:
         specifier: workspace:*
         version: link:../shared
     devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages-internal/typescript-config
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
         version: 16.0.1(rollup@4.40.2)
@@ -238,6 +250,9 @@ importers:
 
   packages/shared:
     devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages-internal/typescript-config
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
         version: 16.0.1(rollup@4.40.2)
