@@ -1,0 +1,17 @@
+{
+  "name": "arrow-right",
+  "tags": ["navigation", "direction", "pointer"],
+  "a11yLabel": "Arrow pointing right",
+  "categories": ["navigation"],
+  "variants": {
+    "outline": {
+      "path": "M5 12h14m-7-7l7 7-7 7"
+    },
+    "filled": {
+      "path": "M12 4l10 8-10 8V4z"
+    },
+    "sharp": {
+      "path": "M5 12h14L13 6m0 12l6-6"
+    }
+  }
+}

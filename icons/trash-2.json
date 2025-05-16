@@ -1,0 +1,17 @@
+{
+  "name": "trash-2",
+  "tags": ["delete", "remove", "bin", "garbage"],
+  "a11yLabel": "Trash bin",
+  "categories": ["actions"],
+  "variants": {
+    "outline": {
+      "path": "M3 6h18m-2 0l-2 15H7L5 6m5 4v8m4-8v8M9 3h6"
+    },
+    "filled": {
+      "path": "M21 6H3m2 0l2 15h10l2-15M9 3h6v3H9V3zM9 10h2v8H9v-8zm4 0h2v8h-2v-8z"
+    },
+    "sharp": {
+      "path": "M3 6h18M5 6l2 15h10l2-15M9 3h6v3H9V3zM9 10h2v8H9v-8zm4 0h2v8h-2v-8z"
+    }
+  }
+}

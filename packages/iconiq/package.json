@@ -1,0 +1,46 @@
+{
+  "name": "@iconiq/core",
+  "version": "0.1.0",
+  "description": "Core icon definitions for iconiq",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./icons": {
+      "require": "./dist/icons/index.js",
+      "import": "./dist/icons/index.mjs",
+      "types": "./dist/icons/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rimraf dist",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix"
+  },
+  "keywords": [
+    "icons",
+    "svg",
+    "typescript"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@iconiq/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "eslint": "^8.38.0",
+    "rimraf": "^5.0.0",
+    "tsup": "^7.0.0",
+    "typescript": "^5.0.0"
+  }
+}

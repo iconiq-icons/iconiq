@@ -1,0 +1,73 @@
+# Configuration for probot-stale - https://github.com/probot/stale
+
+# Number of days of inactivity before an issue becomes stale
+daysUntilStale: 30
+# Number of days of inactivity before a stale issue is closed
+daysUntilClose: 7
+# Issues or pull requests with these labels will never be considered stale
+exemptLabels:
+  - pinned
+  - security
+  - bug
+  - enhancement
+  - dependencies
+# Set to true to ignore issues in a project (defaults to false)
+exemptProjects: false
+# Set to true to ignore issues in an org-wide project (defaults to false)
+exemptOrgProjects: false
+# Set to true to ignore issues from a milestone (defaults to false)
+exemptMilestones: false
+# Set to true to ignore issues with an assignee (defaults to false)
+exemptAssignees: false
+# Set to true to ignore issues with a milestone (defaults to false)
+exemptMilestones: false
+# Labels to take into consideration when calculating if the issue is stale
+staleLabels:
+  - stale
+# Comment to post when marking an issue as stale. Set to `false` to disable
+markComment: >
+  This issue has been automatically marked as stale because it has not had
+  recent activity. It will be closed if no further activity occurs. Thank you
+  for your contributions.
+# Comment to post when closing a stale issue. Set to `false` to disable
+closeComment: >
+  This issue has been automatically closed due to inactivity. Feel free to
+  reopen it if you'd like to continue the discussion.
+# Limit the number of actions per hour, from 1-30. Default is 30
+actionsPerRun: 30
+# Enable/disable logging for created/deleted/updated/closed issues/PRs
+logging: true
+# Issues with these labels will be processed before others. If not defined, sorting will be chronological.
+priorityLabels:
+  - urgent
+  - high
+  - medium
+  - low
+# Set to true to add a "fresh" label when a comment or new activity is made on a stale issue
+removeStaleWhenUpdated: true
+# Set to true to remove other labels when a stale label is added
+removeLabelsWhenStale: false
+# Set to true to remove the stale label when a comment is made
+removeLabelsWhenUnstale: true
+# Set to true to add a comment when a stale label is removed
+unmarkComment: false
+# Set to true to close issues that have been marked as stale for a certain amount of time
+closeIssue: true
+# Set to true to close pull requests that have been marked as stale for a certain amount of time
+closePr: true
+# Set to true to add a comment when a PR is closed
+closePrComment: false
+# Set to true to add a comment when an issue is closed
+closeIssueComment: true
+# Set to true to add a comment when a PR is unmarked
+unmarkPrComment: false
+# Set to true to add a comment when an issue is unmarked
+unmarkIssueComment: false
+# Set to true to add a comment when a PR is closed
+closePrComment: false
+# Set to true to add a comment when an issue is closed
+closeIssueComment: true
+# Set to true to add a comment when a PR is unmarked
+unmarkPrComment: false
+# Set to true to add a comment when an issue is unmarked
+unmarkIssueComment: false 
