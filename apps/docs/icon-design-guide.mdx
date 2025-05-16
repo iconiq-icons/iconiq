@@ -1,54 +1,148 @@
 ---
-title: Icon Design Guide
+title: iconiq Design Principles & Guidelines
 ---
 
-## Icon Design Principles
+## iconiq Icon Design Principles
 
 All iconiq icons must follow these design principles.
 
-### 1. Icons must be designed on a **24 by 24 pixels** canvas.
+### 1. Canvas Size: Icons must be designed on a **24 by 24 pixels** canvas.
 
-### 2. Icons must have at least **1 pixel padding** within the canvas.
+### 2. Padding: Icons must have at least **1 pixel padding** within the canvas.
 
-### 3. Icons must have a **stroke width of 2 pixels**.
+**Important:** No artwork may touch the edge of the canvas.
 
-### 4. Icons must use **round joins**.
+### 3. Stroke Width: Icons must have an **uniform stroke width of 2 pixels**.
 
-### 5. Icons must use **round caps**.
+### 4. Stroke Alignment: Icons must use **centered strokes**.
 
-### 6. Icons must use **centered strokes**.
+### 5. Stroke Joins: Icons must use **round joins**.
 
-### 7. Shapes (such as rectangles) must have a **border radius of**
+### 6. Stroke Caps: Icons must use **round caps**.
 
-#### A. **2 pixels** if they are at least 8 pixels in size
+### 7. Grid: All anchor points and control points must fall on integer coordinates.
 
-#### B. **1 pixel** if they are smaller than 8 pixels in size
+### 8. Curves must use SVG arcs or quadratic Béziers; cubic Béziers are allowed only if control vectors share mirrored angles for perfectly smooth joins.
 
-### 8. Distinct elements must have **2 pixels of spacing between each other**
+### 9. Corner Radii: Shapes (such as rectangles) must have a **border radius of**
 
-### 9. Icons should have a similar optical volume to `circle` and `square`.
+#### a. **2 pixels** if they are at least 8 pixels in size
+
+#### b. **1 pixel** if they are smaller than 8 pixels in size
+
+### 10. Element Spacing: Distinct path groups or shapes must be separated by at least **2 pixels of clear space (measured between their nearest bounding-box edges).**
+
+### 11. Optical Weight: Icons should have a similar optical volume to `circle` and `square`.
 
 **Tip:** place your icon next to the circle or square icon and blur them both; your icon should not feel much darker than the base shape.
 
-### 10. Icons should be visually centered by their center of gravity.
+### 12. Visual Center: Icons should be visually centered by their center of gravity.
 
 **Tip:** place your icon both above/below and next to the square or circle icon and check if it feels off center. Symmetrical icons should always be aligned to the center.
 
-### 11. Icons should have similar visual density and level of detail.
+### 13. Visual Density: Icons should have similar visual density and level of detail.
 
 **Tip:** try to make abstractions to dense elements. Blur your icon, and when blurred it should not feel overly dark.
 
-### 12. Continuous curves should join smoothly.
+### 14. Continuous Curves: Continuous curves should join smoothly.
 
 **Tip:** make sure to use arcs or quadratic curves. When using cubic curves control points should have mirrored angles for smooth curves.
 
-### 13. Icons should aim to be pixel perfect so that they will be sharp on low DPI displays.
+### 15. Pixel Perfect Sharpness: Icons should aim to be pixel perfect so that they will be sharp on low DPI displays.
 
 **Tip:** whenever possible align elements and arc centers to the grid.
 
 ---
 
-## Naming conventions
+## SVG Code Conventions
+
+Before an icon is added to the library, it must have readable and optimized SVG code.
+
+Every SVG must conform exactly to this template and use only allowed elements.
+
+### Global Attributes
+
+For each icon these attributes are applied, corresponding to the above rules.
+
+```xml
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Only the SVG elements below -->
+</svg>
+```
+
+### Allowed elements
+
+SVG files may only contain simple path and shape elements, which may not have any attributes other than sizing and spacing.
+
+Only the following elements and attributes are allowed:
+
+- `<path d="…"/>`
+- `<line x1 y1 x2 y2/>`
+- `<polyline points="…"/>`
+- `<polygon points="…"/>`
+- `<circle cx cy r/>`
+- `<ellipse cx cy rx ry/>`
+- `<rect x y width height rx/>`
+
+**Disallowed elements:** any `<use>`, `<g>`, `<defs>`, transforms, filters, gradients, fills, explicit `stroke` overrides, or metadata tags.
+
+**Disallowed attributes:** any attributes other than sizing and spacing.
+
+### Path Precision
+
+Coordinates and numbers must be rounded to one decimal place (e.g. 12.5, not 12.4678).
+
+SVG output must be minified: remove whitespace and unused attributes while preserving readability of the `<path>` data.
+
+`svgo` must be used to minify the SVG code.
+
+---
+
+## Icon Metadata Conventions
+
+Each icon must also ship with a JSON descriptor named `<IconName>.json` alongside `<IconName>.svg`.
+
+The JSON must follow the iconiq `icon.schema.json` schema:
+
+```json
+{
+  "name": "example-icon",
+  "displayName": "ExampleIcon",
+  "a11yLabel": "An example icon demonstrating the proper structure",
+  "tags": ["example", "demo", "template"],
+  "categories": ["miscellaneous"],
+  "keywords": ["sample", "template", "demonstration"],
+  "aliases": ["demo-icon", "sample-icon"],
+  "version": "0.1.0",
+  "deprecated": false,
+  "variants": {
+    "outline": { "viewBox": "0 0 24 24", "path": "..." },
+    "filled": { "viewBox": "0 0 24 24", "path": "..." },
+    "sharp": { "viewBox": "0 0 24 24", "path": "..." }
+  },
+  "author": "Iconiq Icons",
+  "license": "MIT",
+  "defaultProps": {
+    "size": 24,
+    "strokeWidth": 2,
+    "absoluteStrokeWidth": false
+  }
+}
+```
+
+---
+
+## Icon Naming Conventions
 
 1. Icon names use lower PascalCase.\
    For example: `ArrowUp` instead of `arrow-up`.
@@ -78,63 +172,3 @@ All iconiq icons must follow these design principles.
    For example: a dashed circle must be named `CircleDashed`, not `DashedCircle`, and in coordination with the previous guidelines, a dashed circle containing a broken heart would be named `CircleDashedHeartBroken`, due to the heart being smaller than the circle.
 
 ---
-
-## Code Conventions
-
-Before an icon is added to the library, it must have readable and optimized SVG code.
-
-### Global Attributes
-
-For each icon these attributes are applied, corresponding to the above rules.
-
-```xml
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <!-- SVGElements -->
-</svg>
-```
-
-### Minify paths
-
-The code of paths can sometimes get quite large. To reduce file size we like to minify the code.
-We recommend to tidy paths to 3 points of precision.
-
-### Allowed elements
-
-SVG files may only contain simple path and shape elements, which may not have any attributes other than sizing and spacing.\
-In practice only the following elements and attributes are allowed:
-
-- `<path d>`
-- `<line x1 x2>`
-- `<polygon points>`
-- `<polyline points>`
-- `<circle cx cy r>`
-- `<ellipse cx cy rx ry>`
-- `<rect x y width height rx>`
-
-This also means that no transforms, filters, fills or explicit strokes are allowed.
-
-Never use [`<use>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use). While it may sometimes seem like a good way to optimize file size, there's no way to ensure that the referenced element IDs will be unique once the SVGs are embedded in HTML documents.
-
-## JSON metadata descriptor
-
-Each icon added must also come with a matching JSON file listing tags and categories for the icon.
-Please use the following template:
-
-```json
-{
-  "$schema": "../icon.schema.json",
-  "contributors": ["github-username", "another-github-username"],
-  "tags": ["foo", "bar"],
-  "categories": ["devices"]
-}
-```

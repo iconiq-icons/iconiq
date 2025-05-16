@@ -2,13 +2,16 @@
   "extends": "@repo/typescript-config/react-library",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "composite": true,
     "jsx": "react-jsx",
     "declaration": true,
     "noEmit": false,
     "emitDeclarationOnly": true
   },
-  "include": ["src/**/*"],
-  "references": [{ "path": "../shared" }, { "path": "../iconiq" }]
+  "include": ["src/**/*", "tests/**/*"],
+  "references": [{ "path": "../shared" }, { "path": "../iconiq" }],
+  "vitest": {
+    "include": ["**/*.test.ts"]
+  }
 }

@@ -69,3 +69,17 @@ export function extractPathsFromSVG(svgString: string): string[] {
 
   return paths;
 }
+
+/**
+ * Sanitize props by removing size-related properties
+ *
+ * @param props - The props object to sanitize
+ * @returns A new props object with size-related properties removed
+ */
+export function sanitizeProps<T extends Record<string, unknown>>(
+  props: T
+): Omit<T, 'size' | 'width' | 'height'> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { size, width, height, ...rest } = props;
+  return rest;
+}

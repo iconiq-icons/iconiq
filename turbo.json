@@ -49,6 +49,11 @@
       "outputs": ["coverage/**"],
       "dependsOn": ["build"],
       "cache": true
+    },
+    "test:coverage": {
+      "outputs": ["coverage/**"],
+      "dependsOn": ["build"],
+      "cache": true
     }
   }
 }
