@@ -1,0 +1,36 @@
+{
+  "name": "@repo/postcss-plugin",
+  "version": "0.0.0",
+  "description": "A shared PostCSS preset.",
+  "keywords": [
+    "postcss",
+    "postcss-plugin",
+    "iconiq",
+    "repo"
+  ],
+  "homepage": "https://iconiq.dev",
+  "repository": "github:iconiq-icons/iconiq/packages-internal",
+  "author": "Iconiq",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./index.js"
+  },
+  "main": "./index.js",
+  "dependencies": {
+    "autoprefixer": "^10.2.5",
+    "postcss-calc": "^8.0.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-will-change": "^4.0.1"
+  },
+  "devDependencies": {
+    "postcss": "^8.2.8"
+  },
+  "peerDependencies": {
+    "postcss": "^8.2.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

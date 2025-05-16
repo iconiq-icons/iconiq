@@ -1,0 +1,19 @@
+{
+  "name": "@repo/typescript-config",
+  "version": "0.0.0",
+  "description": "A typescript configuration.",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://iconiq.dev",
+  "repository": "github:iconiq-icons/iconiq/packages-internal",
+  "exports": {
+    "./base": "./base.json",
+    "./nextjs": "./nextjs.json",
+    "./react-library": "./react-library.json",
+    "./vite": "./vite.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,147 @@
+---
+title: Icon Design Guide
+---
+
+## Icon Design Principles
+
+All iconiq icons must follow these design principles.
+
+### 1. Icons must be designed on a **24 by 24 pixels** canvas.
+
+### 2. Icons must have at least **1 pixel padding** within the canvas.
+
+### 3. Icons must have a **stroke width of 2 pixels**.
+
+### 4. Icons must use **round joins**.
+
+### 5. Icons must use **round caps**.
+
+### 6. Icons must use **centered strokes**.
+
+### 7. Shapes (such as rectangles) must have a **border radius of**
+
+#### A. **2 pixels** if they are at least 8 pixels in size
+
+#### B. **1 pixel** if they are smaller than 8 pixels in size
+
+### 8. Distinct elements must have **2 pixels of spacing between each other**
+
+### 9. Icons should have a similar optical volume to `circle` and `square`.
+
+**Tip:** place your icon next to the circle or square icon and blur them both; your icon should not feel much darker than the base shape.
+
+### 10. Icons should be visually centered by their center of gravity.
+
+**Tip:** place your icon both above/below and next to the square or circle icon and check if it feels off center. Symmetrical icons should always be aligned to the center.
+
+### 11. Icons should have similar visual density and level of detail.
+
+**Tip:** try to make abstractions to dense elements. Blur your icon, and when blurred it should not feel overly dark.
+
+### 12. Continuous curves should join smoothly.
+
+**Tip:** make sure to use arcs or quadratic curves. When using cubic curves control points should have mirrored angles for smooth curves.
+
+### 13. Icons should aim to be pixel perfect so that they will be sharp on low DPI displays.
+
+**Tip:** whenever possible align elements and arc centers to the grid.
+
+---
+
+## Naming conventions
+
+1. Icon names use lower PascalCase.\
+   For example: `ArrowUp` instead of `arrow-up`.
+
+2. Icon names use International English names, as opposed to local variants.\
+   For example:  `color` instead of `colour`.
+
+3. Icons should be named for what they depict rather than their use case or what they represent.\
+   For example: `FloppyDisk` instead of `Save` and `CircleSlash` rather than `Ban`.
+
+4. Icons that are part of a group are named `<group>-<variant>`.\
+   For example: `BadgePlus` is based on `Badge`.
+
+5. Icon names for alternate icons should represent what makes the alternate unique instead of being numbered.\
+   For example: `SendHorizontal` instead of `Send2`.
+
+6. Names containing numerals are not allowed, unless the number itself is represented in the icon.\
+   For example: `ArrowDown0To1` contains both numerals.
+
+7. Icons depicting multiple elements (e.g. a person and a circle) of different sizes must list these elements in decreasing order of size.\
+   For example: if the circle is bigger, it should be `CirclePerson`, if the person is bigger, it should be `PersonCircle`.
+
+8. Icons depicting multiple elements of roughly equal sizes (e.g. a `ruler` and a `pencil`) must list these elements front to back in case one element is in front of the other, otherwise in English reading order (top to bottom, left to right).\
+   For example: if the `pencil` is either in front of, above or left of `ruler`, it should be `PencilRuler`, otherwise, it should be `RulerPencil`.
+
+9. Icons depicting some sort of variation of an element must use the `[element]-[modifier]` naming scheme, with modifiers being applied to each element respectively.\
+   For example: a dashed circle must be named `CircleDashed`, not `DashedCircle`, and in coordination with the previous guidelines, a dashed circle containing a broken heart would be named `CircleDashedHeartBroken`, due to the heart being smaller than the circle.
+
+---
+
+## Code Conventions
+
+Before an icon is added to the library, it must have readable and optimized SVG code.
+
+### Global Attributes
+
+For each icon these attributes are applied, corresponding to the above rules.
+
+```xml
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- SVGElements -->
+</svg>
+```
+
+### Minify paths
+
+The code of paths can sometimes get quite large. To reduce file size we like to minify the code.
+We recommend to tidy paths to 3 points of precision.
+
+### Allowed elements
+
+SVG files may only contain simple path and shape elements, which may not have any attributes other than sizing and spacing.\
+In practice only the following elements and attributes are allowed:
+* `<path d>`
+* `<line x1 x2>`
+* `<polygon points>`
+* `<polyline points>`
+* `<circle cx cy r>`
+* `<ellipse cx cy rx ry>`
+* `<rect x y width height rx>`
+
+This also means that no transforms, filters, fills or explicit strokes are allowed.
+
+Never use [`<use>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use). While it may sometimes seem like a good way to optimize file size, there's no way to ensure that the referenced element IDs will be unique once the SVGs are embedded in HTML documents.
+
+## JSON metadata descriptor
+
+Each icon added must also come with a matching JSON file listing tags and categories for the icon.
+Please use the following template:
+
+```json
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "github-username",
+    "another-github-username"
+  ],
+  "tags": [
+    "foo",
+    "bar"
+  ],
+  "categories": [
+    "devices"
+  ]
+}
+```
