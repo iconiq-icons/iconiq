@@ -11,7 +11,7 @@
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "format:check": "prettier --cache --check --ignore-path .gitignore --ignore-path .prettierignore .",
-    "format:write": "prettier --cache --write --list-different --ignore-path .gitignore --ignore-path .prettierignore .",
+    "format": "prettier --cache --write --list-different --ignore-path .gitignore --ignore-path .prettierignore .",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "build:icons": "node scripts/build-icons.js",

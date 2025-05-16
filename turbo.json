@@ -32,7 +32,7 @@
       "outputs": [],
       "cache": false
     },
-    "format:write": {
+    "format": {
       "outputs": [],
       "cache": false
     },
@@ -41,6 +41,7 @@
       "cache": true
     },
     "typecheck": {
+      "dependsOn": ["^build"],
       "outputs": [],
       "cache": true
     },
