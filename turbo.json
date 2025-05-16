@@ -1,11 +1,23 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "pipeline": {
+  "globalDependencies": [".nvmrc", "tsconfig.json"],
+  "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**"],
+      "cache": true
+    },
+    "build:icons": {
+      "dependsOn": ["validate:icons"],
+      "outputs": ["packages/*/src/icons/**"],
+      "cache": true
+    },
+    "validate:icons": {
+      "inputs": ["icons/**/*.json"],
+      "cache": true
     },
     "dev": {
+      "dependsOn": ["^dev"],
       "cache": false,
       "persistent": true
     },
@@ -13,11 +25,29 @@
       "cache": false
     },
     "lint": {
-      "outputs": []
+      "outputs": [],
+      "cache": true
+    },
+    "lint:fix": {
+      "outputs": [],
+      "cache": false
+    },
+    "format:write": {
+      "outputs": [],
+      "cache": false
+    },
+    "format:check": {
+      "outputs": [],
+      "cache": true
+    },
+    "typecheck": {
+      "outputs": [],
+      "cache": true
     },
     "test": {
       "outputs": ["coverage/**"],
-      "dependsOn": ["build"]
+      "dependsOn": ["build"],
+      "cache": true
     }
   }
 }

@@ -21,7 +21,8 @@
     "dev": "tsup --watch",
     "clean": "rimraf dist",
     "lint": "eslint src --ext .ts,.tsx",
-    "lint:fix": "eslint src --ext .ts,.tsx --fix"
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "icons",

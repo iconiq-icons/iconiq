@@ -35,10 +35,10 @@ export default [
     },
     plugins: {
       '@typescript-eslint': tseslint,
-      'react': reactPlugin,
+      react: reactPlugin,
       'react-hooks': reactHooksPlugin,
-      'import': importPlugin,
-      'prettier': prettierPlugin,
+      import: importPlugin,
+      prettier: prettierPlugin,
     },
     rules: {
       // Base ESLint rules
@@ -68,10 +68,10 @@ export default [
       'import/order': [
         'error',
         {
-          'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
           'newlines-between': 'always',
-          'alphabetize': { 'order': 'asc', 'caseInsensitive': true }
-        }
+          alphabetize: { order: 'asc', caseInsensitive: true },
+        },
       ],
 
       // Prettier rules
