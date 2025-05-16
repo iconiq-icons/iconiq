@@ -9,7 +9,7 @@ export async function getIconData(name: string): Promise<IconData> {
   try {
     const iconData = await import(`../../../icons/${name}.json`);
     return iconData as IconData;
-  } catch (error) {
+  } catch {
     throw new Error(`Icon '${name}' not found`);
   }
 }

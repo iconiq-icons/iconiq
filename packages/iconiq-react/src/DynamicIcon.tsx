@@ -1,6 +1,7 @@
-import React, { forwardRef, useState, useEffect, ComponentType } from 'react';
-import { IconNode, IconVariant } from '@iconiq/shared';
 import { getIconData } from '@iconiq/core';
+import { IconNode } from '@iconiq/shared';
+import React, { forwardRef, useState, useEffect, ComponentType } from 'react';
+
 import { IconiqProps } from './createIconiqIcon';
 import { Icon } from './Icon';
 
@@ -55,7 +56,7 @@ export const DynamicIcon = forwardRef<SVGSVGElement, DynamicIconComponentProps>(
     }, [name, variant]);
 
     if (!iconNode) {
-      return fallback ? <fallback /> : null;
+      return fallback ? React.createElement(fallback) : null;
     }
 
     return <Icon ref={ref} iconNode={iconNode} a11yLabel={a11yLabel} {...props} />;
