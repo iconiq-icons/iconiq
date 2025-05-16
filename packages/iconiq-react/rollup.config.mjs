@@ -5,7 +5,7 @@ import dts from 'rollup-plugin-dts';
 import { defineConfig } from 'rollup';
 
 const input = 'src/index.ts';
-const external = ['react', '@iconiq/core', '@iconiq/shared'];
+const external = ['react', 'react/jsx-runtime', '@iconiq/core', '@iconiq/shared'];
 
 export default defineConfig([
   // JS bundle configs
@@ -29,6 +29,9 @@ export default defineConfig([
       typescript({
         tsconfig: './tsconfig.json',
         declaration: false,
+        jsx: 'react-jsx',
+        jsxFactory: undefined,
+        jsxFragmentFactory: undefined,
       }),
       terser({
         format: {
