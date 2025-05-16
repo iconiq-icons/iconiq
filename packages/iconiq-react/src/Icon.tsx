@@ -2,12 +2,23 @@ import { BaseIconProps, IconNode, defaultAttributes, mergeClasses } from '@iconi
 import React, { forwardRef, createElement } from 'react';
 
 export interface IconComponentProps extends BaseIconProps {
+  /**
+   * The icon node structure to render
+   */
   iconNode: IconNode;
+
+  /**
+   * Optional children to render inside the SVG
+   */
   children?: React.ReactNode;
 }
 
 /**
  * Base Icon component that handles rendering SVG with the proper attributes
+ *
+ * @param props - The component props
+ * @param ref - Forwarded ref to the SVG element
+ * @returns A React SVG element with the specified icon
  */
 export const Icon = forwardRef<SVGSVGElement, IconComponentProps>(
   (

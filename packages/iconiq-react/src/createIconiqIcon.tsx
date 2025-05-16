@@ -20,6 +20,11 @@ export interface IconiqProps extends BaseIconProps {
 
 /**
  * Create an icon component from the icon data
+ *
+ * @param iconName - The name of the icon
+ * @param iconData - The icon data object containing variants and metadata
+ * @param defaultVariant - The default variant to use (defaults to 'outline')
+ * @returns A React component that renders the icon
  */
 export function createIconiqIcon(
   iconName: string,

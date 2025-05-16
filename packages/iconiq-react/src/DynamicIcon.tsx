@@ -19,6 +19,10 @@ export interface DynamicIconComponentProps extends IconiqProps {
 
 /**
  * Dynamic icon component that loads icons on demand
+ *
+ * @param props - The component props including the icon name to load
+ * @param ref - Forwarded ref to the SVG element
+ * @returns A React component that asynchronously loads and renders the requested icon
  */
 export const DynamicIcon = forwardRef<SVGSVGElement, DynamicIconComponentProps>(
   ({ name, variant = 'outline', fallback, ...props }, ref) => {

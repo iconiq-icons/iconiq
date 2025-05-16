@@ -54,7 +54,7 @@ All iconiq icons must follow these design principles.
    For example: `ArrowUp` instead of `arrow-up`.
 
 2. Icon names use International English names, as opposed to local variants.\
-   For example:  `color` instead of `colour`.
+   For example: `color` instead of `colour`.
 
 3. Icons should be named for what they depict rather than their use case or what they represent.\
    For example: `FloppyDisk` instead of `Save` and `CircleSlash` rather than `Ban`.
@@ -112,13 +112,14 @@ We recommend to tidy paths to 3 points of precision.
 
 SVG files may only contain simple path and shape elements, which may not have any attributes other than sizing and spacing.\
 In practice only the following elements and attributes are allowed:
-* `<path d>`
-* `<line x1 x2>`
-* `<polygon points>`
-* `<polyline points>`
-* `<circle cx cy r>`
-* `<ellipse cx cy rx ry>`
-* `<rect x y width height rx>`
+
+- `<path d>`
+- `<line x1 x2>`
+- `<polygon points>`
+- `<polyline points>`
+- `<circle cx cy r>`
+- `<ellipse cx cy rx ry>`
+- `<rect x y width height rx>`
 
 This also means that no transforms, filters, fills or explicit strokes are allowed.
 
@@ -132,16 +133,8 @@ Please use the following template:
 ```json
 {
   "$schema": "../icon.schema.json",
-  "contributors": [
-    "github-username",
-    "another-github-username"
-  ],
-  "tags": [
-    "foo",
-    "bar"
-  ],
-  "categories": [
-    "devices"
-  ]
+  "contributors": ["github-username", "another-github-username"],
+  "tags": ["foo", "bar"],
+  "categories": ["devices"]
 }
 ```
