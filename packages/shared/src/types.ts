@@ -24,8 +24,8 @@ export interface IconData {
   variants: {
     [key in IconVariant]?: {
       path: string;
-    }
-  }
+    };
+  };
 }
 
 /**

@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "iconiq Icon Metadata",
+  "description": "Schema for iconiq icon metadata definitions with support for variants and accessibility",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique icon name (PascalCase in code, kebab-case in files)",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Display name in PascalCase (how it appears in import statements)"
+    },
+    "a11yLabel": {
+      "type": "string",
+      "description": "Accessible description of the icon for screen readers"
+    },
+    "aliases": {
+      "type": "array",
+      "description": "Alternative names for the same icon",
+      "items": { "type": "string" }
+    },
+    "keywords": {
+      "type": "array",
+      "description": "Search terms associated with the icon",
+      "items": { "type": "string" }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Categorisation tags for searching and filtering",
+      "items": { "type": "string" }
+    },
+    "categories": {
+      "type": "array",
+      "description": "Categories for grouping icons",
+      "items": { "type": "string" }
+    },
+    "version": {
+      "type": "string",
+      "description": "Version when this icon was introduced or last updated",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "deprecated": {
+      "type": "boolean",
+      "description": "Whether this icon is deprecated",
+      "default": false
+    },
+    "variants": {
+      "type": "object",
+      "description": "Available style variants of the icon",
+      "properties": {
+        "outline": {
+          "type": "object",
+          "description": "Outline variant (default)",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "SVG path data for the outline variant"
+            },
+            "viewBox": {
+              "type": "string",
+              "description": "SVG viewBox attribute",
+              "default": "0 0 24 24",
+              "pattern": "^\\d+ \\d+ \\d+ \\d+$"
+            }
+          },
+          "required": ["path"]
+        },
+        "filled": {
+          "type": "object",
+          "description": "Filled variant",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "SVG path data for the filled variant"
+            },
+            "viewBox": {
+              "type": "string",
+              "description": "SVG viewBox attribute",
+              "default": "0 0 24 24",
+              "pattern": "^\\d+ \\d+ \\d+ \\d+$"
+            }
+          },
+          "required": ["path"]
+        },
+        "sharp": {
+          "type": "object",
+          "description": "Sharp variant",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "SVG path data for the sharp variant"
+            },
+            "viewBox": {
+              "type": "string",
+              "description": "SVG viewBox attribute",
+              "default": "0 0 24 24",
+              "pattern": "^\\d+ \\d+ \\d+ \\d+$"
+            }
+          },
+          "required": ["path"]
+        }
+      },
+      "minProperties": 1
+    },
+    "author": {
+      "type": "string",
+      "description": "Original author or contributor of the icon"
+    },
+    "license": {
+      "type": "string",
+      "description": "License under which the icon is distributed",
+      "default": "MIT"
+    },
+    "defaultProps": {
+      "type": "object",
+      "description": "Default props to apply to the icon component",
+      "properties": {
+        "size": {
+          "type": ["number", "string"],
+          "description": "Default size in pixels or as a string",
+          "default": 24
+        },
+        "strokeWidth": {
+          "type": ["number", "string"],
+          "description": "Default stroke width",
+          "default": 2
+        },
+        "absoluteStrokeWidth": {
+          "type": "boolean",
+          "description": "Whether to use absolute stroke width",
+          "default": false
+        }
+      }
+    }
+  },
+  "required": ["name", "a11yLabel", "variants"],
+  "additionalProperties": false
+}

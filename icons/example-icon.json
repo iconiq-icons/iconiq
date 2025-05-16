@@ -1,0 +1,32 @@
+{
+  "name": "example-icon",
+  "displayName": "ExampleIcon",
+  "a11yLabel": "An example icon demonstrating the proper structure",
+  "tags": ["example", "demo", "template"],
+  "categories": ["miscellaneous"],
+  "keywords": ["sample", "template", "demonstration"],
+  "aliases": ["demo-icon", "sample-icon"],
+  "version": "0.1.0",
+  "deprecated": false,
+  "variants": {
+    "outline": {
+      "path": "M12 4v16m-8-8h16",
+      "viewBox": "0 0 24 24"
+    },
+    "filled": {
+      "path": "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1 5a1 1 0 0 1 2 0v6a1 1 0 0 1-2 0V7zm1 10a1 1 0 1 1 0 2 1 1 0 0 1 0-2z",
+      "viewBox": "0 0 24 24"
+    },
+    "sharp": {
+      "path": "M10 4h4v16h-4V4zm-6 6h16v4H4v-4z",
+      "viewBox": "0 0 24 24"
+    }
+  },
+  "author": "Iconiq Icons",
+  "license": "MIT",
+  "defaultProps": {
+    "size": 24,
+    "strokeWidth": 2,
+    "absoluteStrokeWidth": false
+  }
+}

@@ -1,5 +1,13 @@
 import React, { forwardRef, createElement } from 'react';
-import { BaseIconProps, IconData, IconNode, IconVariant, mergeClasses, convertPathToIconNode, toPascalCase } from '@iconiq/shared';
+import {
+  BaseIconProps,
+  IconData,
+  IconNode,
+  IconVariant,
+  mergeClasses,
+  convertPathToIconNode,
+  toPascalCase,
+} from '@iconiq/shared';
 import { Icon } from './Icon';
 
 export interface IconiqProps extends BaseIconProps {

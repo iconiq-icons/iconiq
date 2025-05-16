@@ -34,9 +34,7 @@ export const DynamicIcon = forwardRef<SVGSVGElement, DynamicIconComponentProps>(
           if (!isMounted) return;
 
           // Get the path for the selected variant, falling back to outline
-          const variantData =
-            iconData.variants[variant] ||
-            iconData.variants.outline;
+          const variantData = iconData.variants[variant] || iconData.variants.outline;
 
           if (!variantData) {
             throw new Error(`No valid variant found for icon ${name}`);
@@ -61,5 +59,5 @@ export const DynamicIcon = forwardRef<SVGSVGElement, DynamicIconComponentProps>(
     }
 
     return <Icon ref={ref} iconNode={iconNode} a11yLabel={a11yLabel} {...props} />;
-  },
+  }
 );

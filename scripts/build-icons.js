@@ -8,7 +8,7 @@ function runCommand(command, args, cwd = process.cwd()) {
   const result = spawnSync(command, args, {
     cwd,
     stdio: 'inherit',
-    shell: true
+    shell: true,
   });
 
   if (result.status !== 0) {

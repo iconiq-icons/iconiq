@@ -34,5 +34,5 @@ function optimizePath(path) {
 
 module.exports = {
   optimizeSvg,
-  optimizePath
+  optimizePath,
 };

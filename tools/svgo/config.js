@@ -12,16 +12,16 @@ module.exports = {
           removeViewBox: false,
 
           // Don't collapse groups
-          collapseGroups: false
-        }
-      }
+          collapseGroups: false,
+        },
+      },
     },
     // Remove all fill attributes
     {
       name: 'removeAttrs',
       params: {
-        attrs: ['fill', 'class']
-      }
+        attrs: ['fill', 'class'],
+      },
     },
     // Make IDs unique
     'cleanupIDs',
@@ -38,6 +38,6 @@ module.exports = {
     // Remove editor namespace
     'removeEditorsNSData',
     // Remove empty attributes
-    'removeEmptyAttrs'
-  ]
+    'removeEmptyAttrs',
+  ],
 };

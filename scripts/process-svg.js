@@ -48,12 +48,12 @@ async function processSvg(filePath, iconName, variant = 'outline') {
       // Create new icon data
       iconData = {
         name: iconName,
-        tags: [],  // Would be populated with real tags
+        tags: [], // Would be populated with real tags
         a11yLabel: `${iconName.split('-').join(' ')} icon`,
-        categories: [],  // Would be populated with real categories
+        categories: [], // Would be populated with real categories
         variants: {
-          [variant]: { path }
-        }
+          [variant]: { path },
+        },
       };
     }
 
@@ -124,5 +124,5 @@ if (require.main === module) {
 
 module.exports = {
   processSvg,
-  processDirectory
+  processDirectory,
 };
