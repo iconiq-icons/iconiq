@@ -5,9 +5,11 @@
   "private": true,
   "packageManager": "pnpm@10.11.0",
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build --filter='./packages/*'",
+    "build:all": "turbo run build",
     "dev": "turbo run dev",
-    "lint": "turbo run lint",
+    "lint": "turbo run lint --filter='./packages/*'",
+    "lint:all": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "format:check": "prettier --cache --check --ignore-path .gitignore --ignore-path .prettierignore .",
     "format": "prettier --cache --write --list-different --ignore-path .gitignore --ignore-path .prettierignore .",
