@@ -1,0 +1,137 @@
+name: Accessibility and Visual Regression Tests
+
+on:
+  push:
+    branches:
+      - main
+      - next
+    paths:
+      - 'iconiq-react/src/**'
+  pull_request:
+    paths:
+      - 'iconiq-react/src/**'
+
+jobs:
+  accessibility_test:
+    name: 'Accessibility Tests'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        node-version: [20]
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup node ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Restore cache
+        id: node-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/.turbo
+            node_modules/.cache/turbo
+          key: ${{ runner.os }}-accessibility-test-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-accessibility-test-
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Restore Playwright cache
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: '${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}'
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      # If the Playwright browser binaries weren't able to be restored,
+      # then playwright should install everything.
+      - name: Install Playwright with dependencies
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: pnpm dlx playwright@"${{ steps.playwright-version.outputs.version }}" install --with-deps
+
+      # Install Playwright's OS dependencies
+      - name: Install Playwright's dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: pnpm dlx playwright@"${{ steps.playwright-version.outputs.version }}" install-deps
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Build Storybook
+        run: pnpm storybook:build --quiet
+
+      - name: Run Accessibility test
+        run: pnpm storybook:test
+
+
+  visual_regression_test:
+    name: 'Visual Regression Tests'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Chromatic git history to track changes
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/.turbo
+            node_modules/.cache/turbo
+          key: ${{ runner.os }}-visual-regression-test-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-visual-regression-test-
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Build Storybook
+        run: pnpm storybook:build --quiet
+        env:
+          STORYBOOK_GITHUB_SHA: ${{ github.sha }}
+          STORYBOOK_GITHUB_REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+          STORYBOOK_GITHUB_PR: ${{ github.event.number }}
+
+      - name: Run Chromatic tests
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          autoAcceptChanges: 'main'
+          storybookBuildDir: 'apps/storybook/static'
+          exitZeroOnChanges: true
+          exitOnceUploaded: true
+        env:
+          STORYBOOK_GITHUB_SHA: ${{ github.sha }}
+          STORYBOOK_GITHUB_REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+          STORYBOOK_GITHUB_PR: ${{ github.event.number }}
