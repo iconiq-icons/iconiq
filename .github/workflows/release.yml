@@ -35,9 +35,6 @@ jobs:
           version: 10
           run_install: false
 
-      - name: Setup pnpm config
-        run: pnpm config set store-dir ${{ github.workspace }}/.pnpm-store
-
       - name: Install Dependencies
         run: pnpm install
 
