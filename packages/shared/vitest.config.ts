@@ -6,11 +6,19 @@ export default mergeConfig(
   defineConfig({
     test: {
       name: 'shared',
-      include: ['tests/**/*.test.{ts,tsx}'],
+      include: ['tests/**/*.test.{ts,tsx}', 'src/**/*.test.{ts,tsx}'],
       // Extend any package-specific settings if needed
-      // For example, you might want to customize the coverage report directory
       coverage: {
         reportsDirectory: './coverage/shared',
+        include: ['src/**/*.{ts,tsx}'],
+        exclude: [
+          'coverage/**',
+          'dist/**',
+          'node_modules/**',
+          '**/*.d.ts',
+          '**/*.test.{ts,tsx}',
+          '**/*.config.ts',
+        ],
       },
     },
   })

@@ -12,13 +12,9 @@ Thank you for your interest in contributing to iconiq! This document provides gu
 ### Setting Up the Development Environment
 
 1. Fork and clone the repository
-2. Install dependencies:
-   ```bash
-   pnpm install
-   ```
-3. Build the packages:
-   ```bash
-   pnpm build
+2. Install dependencies and buid package:
+   ```sh
+   pnpm install && pnpm build
    ```
 
 ## Development Workflow
@@ -28,10 +24,13 @@ Thank you for your interest in contributing to iconiq! This document provides gu
 ```
 iconiq/
 ├── packages/
-│   ├── shared/        # Shared utilities and type definitions
 │   ├── iconiq/        # Core icon definitions
-│   └── iconiq-react/  # React components
-├── icons/             # Icon definitions (JSON)
+│   ├── iconiq-react/  # React components
+│   └── shared/        # Shared utilities and type definitions
+├── icons/
+│   ├── IconName.svg   # Icon SVG file
+│   ├── IconName.json  # Icon definition
+│   └── ...
 ├── tools/             # Build tooling
 └── scripts/           # Helper scripts
 ```
@@ -53,15 +52,18 @@ This project uses [Changesets](https://github.com/changesets/changesets) to mana
 This will create a `.md` file in the `.changeset` directory that describes your changes. This file should be committed with your pull request.
 
 When changes are merged to `main`, a GitHub Action will:
+
 1. Create a "Version Packages" PR if it doesn't exist
 2. Update the PR with the latest changesets
 
 When the "Version Packages" PR is merged:
+
 1. Package versions will be updated according to the changesets
 2. Changelogs will be generated
 3. Packages will be published to npm
 
 **Types of changes:**
+
 - `patch`: Bug fixes and minor changes
 - `minor`: New features (backward compatible)
 - `major`: Breaking changes
