@@ -20,6 +20,9 @@
     "generate:svg": "node scripts/generate-svg-components.js",
     "process:svg": "node scripts/process-svg.js",
     "validate:icons": "node scripts/validate-icons.mjs",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "changeset publish",
     "prepare": "husky",
     "clean": "turbo run clean && rimraf .next .turbo && rimraf node_modules"
   },
@@ -33,6 +36,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@changesets/cli": "^2.29.4",
     "@repo/typescript-config": "workspace:*",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",

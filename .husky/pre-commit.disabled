@@ -1,3 +1,19 @@
 #!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
+# Check if there are any changes in the packages
+PACKAGE_CHANGES=$(git diff --staged --name-only | grep -E '^packages\/[^\/]+\/(src|tests)\/.*\.(ts|tsx|js|jsx)$' || true)
+
+# If there are changes in packages, check if there's at least one changeset
+if [ -n "$PACKAGE_CHANGES" ]; then
+  CHANGESET_FILES=$(git diff --staged --name-only | grep -E '\.changeset\/.*\.md$' | grep -v 'README.md' || true)
+  if [ -z "$CHANGESET_FILES" ]; then
+    echo "🦋 Detected changes in packages but no changeset file."
+    echo "🦋 Please create a changeset using 'pnpm changeset' to document your changes."
+    echo "🦋 If this is a very minor change not requiring a version bump, bypass this check with --no-verify."
+    exit 1
+  fi
+fi
+
+# Run lint-staged normally
 pnpm lint-staged

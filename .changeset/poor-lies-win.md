@@ -4,4 +4,4 @@
 '@iconiq/shared': minor
 ---
 
-Implement changesets versioning
+Implement changeset version

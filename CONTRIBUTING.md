@@ -36,6 +36,38 @@ iconiq/
 └── scripts/           # Helper scripts
 ```
 
+### Using Changesets for Versioning
+
+This project uses [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs. When making changes that should trigger a version bump, follow these steps:
+
+1. Make your changes to the codebase
+2. Create a changeset:
+   ```bash
+   pnpm changeset
+   ```
+3. Follow the interactive prompt:
+   - Select the packages that have changed
+   - Choose the semver bump type (major, minor, patch)
+   - Write a brief description of the changes
+
+This will create a `.md` file in the `.changeset` directory that describes your changes. This file should be committed with your pull request.
+
+When changes are merged to `main`, a GitHub Action will:
+1. Create a "Version Packages" PR if it doesn't exist
+2. Update the PR with the latest changesets
+
+When the "Version Packages" PR is merged:
+1. Package versions will be updated according to the changesets
+2. Changelogs will be generated
+3. Packages will be published to npm
+
+**Types of changes:**
+- `patch`: Bug fixes and minor changes
+- `minor`: New features (backward compatible)
+- `major`: Breaking changes
+
+The pre-commit hook will remind you to create a changeset if you modify code in the packages.
+
 ### Working with Icons
 
 Icons are defined using JSON files in the `icons/` directory. Each icon should:
@@ -94,8 +126,9 @@ pnpm format:check
 2. Make your changes following the coding style
 3. Add or update tests as necessary
 4. Ensure all tests pass
-5. Update documentation as needed
-6. Submit a PR with a clear title and description
+5. Create a changeset if your changes affect any packages
+6. Update documentation as needed
+7. Submit a PR with a clear title and description
 
 ## Adding New Icons
 
@@ -104,6 +137,7 @@ pnpm format:check
 3. Run validation: `pnpm validate:icons`
 4. Build the icons: `pnpm build:icons`
 5. Test the new icon in the preview app: `pnpm dev`
+6. Create a changeset to document the new icon: `pnpm changeset`
 
 ## License
 
