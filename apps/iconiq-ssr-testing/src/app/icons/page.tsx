@@ -6,13 +6,13 @@ import IconComponent from '@/components/IconComponent';
 export default async function IconsPage() {
   // Pre-render server components
   const serverIcon1 = await ServerIconComponent({
-    name: "server-icon-1"
+    name: 'server-icon-1',
   });
 
   const serverIcon2 = await ServerIconComponent({
-    name: "server-icon-2",
+    name: 'server-icon-2',
     size: 32,
-    color: "blue"
+    color: 'blue',
   });
 
   return (

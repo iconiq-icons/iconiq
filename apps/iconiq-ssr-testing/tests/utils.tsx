@@ -42,7 +42,7 @@ export function simulateHydration(element: React.ReactElement) {
         fireEvent.focus(element);
       }
       return element;
-    }
+    },
   };
 }
 
@@ -76,6 +76,6 @@ export function compareServerClientRenders(element: React.ReactElement) {
     serverHTML,
     clientHTML,
     // Returns true if no hydration mismatch
-    match: serverHTML === clientHTML
+    match: serverHTML === clientHTML,
   };
 }

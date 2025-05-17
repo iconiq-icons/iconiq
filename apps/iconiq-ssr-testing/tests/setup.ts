@@ -1,3 +1,4 @@
+import React from 'react';
 import '@testing-library/jest-dom/vitest';
 
 // Mock Next.js router
@@ -16,13 +17,13 @@ vi.mock('next/navigation', () => ({
 
 // Mock next/image for SSR testing
 vi.mock('next/image', () => ({
-  default: ({ src, alt, width, height, ...props }: any) => (
-    <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      {...props}
-    />
-  ),
+  default: ({ src, alt, width, height, ...props }) => {
+    return React.createElement('img', {
+      src,
+      alt,
+      width,
+      height,
+      ...props,
+    });
+  },
 }));

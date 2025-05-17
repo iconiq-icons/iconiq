@@ -17,14 +17,7 @@ describe('IconComponent', () => {
   });
 
   it('renders with custom props', () => {
-    render(
-      <IconComponent
-        name="custom-icon"
-        size={32}
-        color="red"
-        className="custom-class"
-      />
-    );
+    render(<IconComponent name="custom-icon" size={32} color="red" className="custom-class" />);
 
     const iconElement = screen.getByTestId('icon-component');
 

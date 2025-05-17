@@ -8,7 +8,7 @@ vi.mock('@/components/ServerIconComponent', () => ({
     // Create a mockup of a server component result
     const { default: IconComponent } = await import('@/components/IconComponent');
     return <IconComponent {...props} />;
-  }
+  },
 }));
 
 vi.mock('@/components/ClientIconComponent', () => ({

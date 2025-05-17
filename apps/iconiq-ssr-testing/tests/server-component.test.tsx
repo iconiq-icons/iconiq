@@ -8,7 +8,7 @@ vi.mock('../src/components/ServerIconComponent', () => ({
   ServerIconComponent: async (props: any) => {
     // Simulate async server component
     return <IconComponent {...props} />;
-  }
+  },
 }));
 
 describe('Server Component SSR Tests', () => {
@@ -22,7 +22,7 @@ describe('Server Component SSR Tests', () => {
       const ServerIconElement = await ServerIconComponent({
         name: 'server-rendered-icon',
         size: 32,
-        color: 'blue'
+        color: 'blue',
       });
 
       // Render the result inside our server component wrapper
@@ -34,7 +34,7 @@ describe('Server Component SSR Tests', () => {
       expect(iconElement).toHaveStyle({
         width: '32px',
         height: '32px',
-        color: 'blue'
+        color: 'blue',
       });
     });
   });
@@ -78,7 +78,7 @@ describe('Server Component SSR Tests', () => {
       expect(iconElements[1]).toHaveStyle({
         width: '32px',
         height: '32px',
-        color: 'red'
+        color: 'red',
       });
     });
   });
@@ -89,7 +89,7 @@ describe('Server Component SSR Tests', () => {
       { name: 'test-icon-1', size: 16, color: 'green' },
       { name: 'test-icon-2', size: 24, color: 'blue' },
       { name: 'test-icon-3', size: 48, color: 'red' },
-    ])('renders server icon with props %s', async (props) => {
+    ])('renders server icon with props %s', async props => {
       // Import needs to be dynamic because it's an async component
       const { ServerIconComponent } = await import('../src/components/ServerIconComponent');
 
@@ -105,7 +105,7 @@ describe('Server Component SSR Tests', () => {
       expect(iconElement).toHaveStyle({
         width: `${props.size}px`,
         height: `${props.size}px`,
-        color: props.color
+        color: props.color,
       });
     });
   });

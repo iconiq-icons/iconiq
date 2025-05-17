@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import IconComponent, { IconProps } from './IconComponent';
 
-export const ClientIconComponent: React.FC<IconProps> = (props) => {
+export const ClientIconComponent: React.FC<IconProps> = props => {
   const [clicked, setClicked] = useState(false);
 
   // This component will run only on the client

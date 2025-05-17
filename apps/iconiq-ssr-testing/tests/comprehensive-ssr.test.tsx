@@ -8,7 +8,7 @@ import { simulateHydration, compareServerClientRenders, testServerProps } from '
 const iconVariations = [
   { name: 'simple-icon', size: 24, color: 'currentColor' },
   { name: 'large-icon', size: 48, color: 'blue' },
-  { name: 'custom-icon', size: 32, color: 'red', className: 'custom-class' }
+  { name: 'custom-icon', size: 32, color: 'red', className: 'custom-class' },
 ];
 
 describe('Comprehensive SSR Testing', () => {
@@ -19,7 +19,7 @@ describe('Comprehensive SSR Testing', () => {
 
   // 1. Test that the rendering mechanism works correctly
   describe('Rendering Mechanism', () => {
-    it.each(iconVariations)('correctly renders icon: $name on server and client', (iconProps) => {
+    it.each(iconVariations)('correctly renders icon: $name on server and client', iconProps => {
       const { match, serverHTML, clientHTML } = compareServerClientRenders(
         <IconComponent {...iconProps} />
       );
@@ -50,33 +50,28 @@ describe('Comprehensive SSR Testing', () => {
 
   // 2. Test that props are properly applied
   describe('Props Application', () => {
-    it.each(iconVariations)('applies style props correctly: $name', (iconProps) => {
-      testServerProps(
-        IconComponent,
-        'icon-component',
-        iconProps,
-        (result) => {
-          const element = result.getByTestId('icon-component');
+    it.each(iconVariations)('applies style props correctly: $name', iconProps => {
+      testServerProps(IconComponent, 'icon-component', iconProps, result => {
+        const element = result.getByTestId('icon-component');
 
-          // Check that size is applied correctly
-          if (iconProps.size) {
-            expect(element).toHaveStyle({
-              width: `${iconProps.size}px`,
-              height: `${iconProps.size}px`
-            });
-          }
-
-          // Check that color is applied correctly
-          if (iconProps.color) {
-            expect(element).toHaveStyle({ color: iconProps.color });
-          }
-
-          // Check that className is applied correctly
-          if (iconProps.className) {
-            expect(element).toHaveClass(iconProps.className);
-          }
+        // Check that size is applied correctly
+        if (iconProps.size) {
+          expect(element).toHaveStyle({
+            width: `${iconProps.size}px`,
+            height: `${iconProps.size}px`,
+          });
         }
-      );
+
+        // Check that color is applied correctly
+        if (iconProps.color) {
+          expect(element).toHaveStyle({ color: iconProps.color });
+        }
+
+        // Check that className is applied correctly
+        if (iconProps.className) {
+          expect(element).toHaveClass(iconProps.className);
+        }
+      });
     });
 
     it('applies all props simultaneously and correctly', () => {
@@ -84,7 +79,7 @@ describe('Comprehensive SSR Testing', () => {
         name: 'complex-props-test',
         size: 64,
         color: 'purple',
-        className: 'test-class special-icon'
+        className: 'test-class special-icon',
       };
 
       render(<IconComponent {...complexProps} />);
@@ -94,7 +89,7 @@ describe('Comprehensive SSR Testing', () => {
       expect(element).toHaveStyle({
         width: `${complexProps.size}px`,
         height: `${complexProps.size}px`,
-        color: complexProps.color
+        color: complexProps.color,
       });
       expect(element).toHaveClass('test-class');
       expect(element).toHaveClass('special-icon');
@@ -154,7 +149,7 @@ describe('Comprehensive SSR Testing', () => {
       expect(icon).toHaveStyle({
         width: '40px',
         height: '40px',
-        color: 'green'
+        color: 'green',
       });
       expect(icon).toHaveClass('interactive-class');
 

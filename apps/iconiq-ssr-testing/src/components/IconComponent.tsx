@@ -20,7 +20,7 @@ export const IconComponent: React.FC<IconProps> = ({
       style={{
         width: size,
         height: size,
-        color
+        color,
       }}
     >
       {name}

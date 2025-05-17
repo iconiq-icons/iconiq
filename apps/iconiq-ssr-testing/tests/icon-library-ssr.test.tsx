@@ -16,27 +16,23 @@ const mockIconTypes = [
 describe('Icon Library SSR Testing', () => {
   // 1. Test basic rendering of different icon types
   describe('Icon Type Rendering', () => {
-    it.each(mockIconTypes)('renders $name-$variant icon correctly in SSR',
-      ({ name, variant }) => {
-        const iconName = `${name}-${variant}`;
-        const { serverRender, clientRender } = simulateHydration(
-          <IconComponent name={iconName} />
-        );
+    it.each(mockIconTypes)('renders $name-$variant icon correctly in SSR', ({ name, variant }) => {
+      const iconName = `${name}-${variant}`;
+      const { serverRender, clientRender } = simulateHydration(<IconComponent name={iconName} />);
 
-        // Both renders should contain the icon name
-        const serverElement = serverRender.getByTestId('icon-component');
-        const clientElement = clientRender.getByTestId('icon-component');
+      // Both renders should contain the icon name
+      const serverElement = serverRender.getByTestId('icon-component');
+      const clientElement = clientRender.getByTestId('icon-component');
 
-        expect(serverElement).toHaveTextContent(iconName);
-        expect(clientElement).toHaveTextContent(iconName);
-      }
-    );
+      expect(serverElement).toHaveTextContent(iconName);
+      expect(clientElement).toHaveTextContent(iconName);
+    });
   });
 
   // 2. Test different icon styling variations
   describe('Icon Styling Variations', () => {
     // Testing different sizes
-    it.each([16, 24, 32, 48])('renders icons at size %dpx correctly', (size) => {
+    it.each([16, 24, 32, 48])('renders icons at size %dpx correctly', size => {
       const { serverRender, clientRender } = simulateHydration(
         <IconComponent name="size-test" size={size} />
       );
@@ -50,8 +46,9 @@ describe('Icon Library SSR Testing', () => {
     });
 
     // Testing different colors
-    it.each(['red', '#00ff00', 'rgba(0, 0, 255, 0.5)', 'currentColor'])
-      ('renders icons with color %s correctly', (color) => {
+    it.each(['red', '#00ff00', 'rgba(0, 0, 255, 0.5)', 'currentColor'])(
+      'renders icons with color %s correctly',
+      color => {
         render(<IconComponent name="color-test" color={color} />);
         const element = document.querySelector('[data-testid="icon-component"]');
 
@@ -62,7 +59,8 @@ describe('Icon Library SSR Testing', () => {
 
   // 3. Test client-side interactivity
   describe('Icon Interactivity', () => {
-    it.each(mockIconTypes)('$name-$variant icon maintains interactivity after hydration',
+    it.each(mockIconTypes)(
+      '$name-$variant icon maintains interactivity after hydration',
       ({ name, variant }) => {
         const iconName = `${name}-${variant}`;
         const { clientRender, interact } = simulateHydration(
